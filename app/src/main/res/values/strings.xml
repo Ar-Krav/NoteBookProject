@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">NoteBookProject</string>
+    <string name="app_name">NoteBook</string>
+    <string name="delete_selected_notes">menuItemTitle</string>
 </resources>
