@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">NoteBook</string>
     <string name="delete_selected_notes">menuItemTitle</string>
+    <string name="create_note_btn">Create Note</string>
 </resources>

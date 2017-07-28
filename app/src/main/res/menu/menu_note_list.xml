@@ -8,7 +8,8 @@
         android:id="@+id/deleteNoteMI"
         android:title="@string/delete_selected_notes"
         android:icon="@android:drawable/ic_menu_delete"
-        app:showAsAction="always">
+        app:showAsAction="always"
+        android:visible="false">
     </item>
 
 </menu>
