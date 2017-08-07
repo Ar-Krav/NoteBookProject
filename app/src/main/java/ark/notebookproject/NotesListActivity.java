@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class NotesListActivity extends AppCompatActivity {
 
@@ -19,10 +22,15 @@ public class NotesListActivity extends AppCompatActivity {
     MenuItem deleteNoteMenuItem;
     Button createNoteBtn;
 
+    ArrayList<TextView> listOfNotes;
+    int idOfSelectedNote;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_list);
+
+        listOfNotes = new ArrayList<>();
 
         createNoteBtn = (Button) findViewById(R.id.createNoteBtn);
         createNoteBtn.setOnClickListener(getCreateNoteBtnListener());
@@ -39,7 +47,17 @@ public class NotesListActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        noteListLinearLayout.removeView(findViewById(idOfSelectedNote));
+        Toast.makeText(this, "Delete Item #" + idOfSelectedNote, Toast.LENGTH_SHORT).show();
+        deleteNoteMenuItem.setVisible(false);
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        idOfSelectedNote = v.getId();
         deleteNoteMenuItem.setVisible(true);
         super.onCreateContextMenu(menu, v, menuInfo);
     }
@@ -54,9 +72,11 @@ public class NotesListActivity extends AppCompatActivity {
                     layoutParams.topMargin = 15;
 
                 TextView createdNote = new TextView(NotesListActivity.this);
-                    createdNote.setText("New Note!");
+                    createdNote.setId(listOfNotes.size());
+                    createdNote.setText("New Note! " + listOfNotes.size());
                     createdNote.setTextSize(26);
                     createdNote.setBackgroundResource(R.drawable.notes_border);
+                listOfNotes.add(createdNote);
 
                     registerForContextMenu(createdNote);
 
