@@ -76,10 +76,9 @@ public class NotesListActivity extends AppCompatActivity {
                     createdNote.setText("New Note! " + listOfNotes.size());
                     createdNote.setTextSize(26);
                     createdNote.setBackgroundResource(R.drawable.notes_border);
+
                 listOfNotes.add(createdNote);
-
-                    registerForContextMenu(createdNote);
-
+                registerForContextMenu(createdNote);
                 noteListLinearLayout.addView(createdNote,layoutParams);
             }
         };
