@@ -50,6 +50,13 @@ public class NotesListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         noteListLinearLayout.removeView(findViewById(idOfSelectedNote));
         Toast.makeText(this, "Delete Item #" + idOfSelectedNote, Toast.LENGTH_SHORT).show();
+
+        listOfNotes.remove(idOfSelectedNote);
+        for (int i = idOfSelectedNote; i < listOfNotes.size(); i++){
+            TextView bufferedTextView = listOfNotes.get(i);
+            bufferedTextView.setId(i);
+        }
+
         deleteNoteMenuItem.setVisible(false);
 
         return super.onOptionsItemSelected(item);
@@ -69,7 +76,7 @@ public class NotesListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,250);
-                    layoutParams.topMargin = 15;
+                    layoutParams.setMargins(15,15,15,15);
 
                 TextView createdNote = new TextView(NotesListActivity.this);
                     createdNote.setId(listOfNotes.size());
